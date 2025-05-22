@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 import uvicorn
 from fastapi import FastAPI, HTTPException
-from .services import list_services, service_status, restart_service, stop_service, start_service, service_help, ServiceNotFoundError
+from src.services import list_services, service_status, restart_service, stop_service, start_service, service_help, ServiceNotFoundError
 import logging
 
 app = FastAPI()

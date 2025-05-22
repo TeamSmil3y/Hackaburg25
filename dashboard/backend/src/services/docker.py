@@ -1,35 +1,36 @@
 from .exceptions import ServiceNotFoundError
-import docker
+import subprocess
 
 SERVICES = {
-    # "email": {
-    #     "name": "Email Service",
-    #     "description": "Handles email notifications and communications.",
-    #     "status": "running",
-    #     "restartable": True,
-    #     "stoppable": True,
-    #     "startable": True,
-    # },
-    # "vpn": {
-    #     "name": "VPN Service",
-    #     "description": "Provides secure VPN connections.",
-    #     "status": "stopped",
-    #     "restartable": True,
-    #     "stoppable": True,
-    #     "startable": True,
-    # },
-    # "llm": {
-    #     "name": "LLM Service",
-    #     "description": "Handles large language model processing.",
-    #     "status": "running",
-    #     "restartable": True,
-    #     "stoppable": True,
-    #     "startable": True,
-    # },
+    "nextcloud": {
+        "container_name": "nextcloud",
+        "image": "nextcloud",
+        "description": "Self-hosted cloud storage and collaboration platform.",
+        "memory_limit": "1024m",  # 1GB
+        "volumes": ["/home/jasforum/Developer/hackathons/Hackaburg25/dashboard/backend/data/nextcloud:/var/www/html/data"],
+        "ports": ["8010:80"]
+    },
+    "immich": {
+        "container_name": "immich_server",
+        "image": "altran1502/immich-server:v1.89.0",
+        "description": "Self-hosted Google Photos alternative with AI features.",
+        "memory_limit": "2048m",  # 2GB
+        "volumes": ["/home/jasforum/Developer/hackathons/Hackaburg25/dashboard/backend/data/immich:/app/data"],
+        "ports": ["8020:2283"]
+    },
 }
 
 def list_services():
-    return SERVICES
+    results = {}
+    for key, meta in SERVICES.items():
+        container = meta["container_name"]
+        try:
+            output = subprocess.check_output(["docker", "inspect", "-f", "{{.State.Status}}", container], stderr=subprocess.DEVNULL)
+            status = output.decode().strip()
+        except subprocess.CalledProcessError:
+            status = "not found"
+        results[key] = {"status": status, "description": meta["description"]}
+    return results
 
 def check_service_name(func):
     def wrapper(service_name: str, *args, **kwargs):
@@ -40,21 +41,49 @@ def check_service_name(func):
 
 @check_service_name
 def service_status(service_name: str):
-    service = SERVICES[service_name]
-    return service["status"]
+    container = SERVICES[service_name]["container_name"]
+    try:
+        output = subprocess.check_output(["docker", "inspect", "-f", "{{.State.Status}}", container], stderr=subprocess.DEVNULL)
+        return {"status": output.decode().strip()}
+    except subprocess.CalledProcessError:
+        return {"status": "not found"}
 
 @check_service_name
 def restart_service(service_name: str):
-    pass
+    container = SERVICES[service_name]["container_name"]
+    subprocess.run(["docker", "restart", container], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return {"status": "restarted"}
 
 @check_service_name
 def stop_service(service_name: str):
-    pass
+    container = SERVICES[service_name]["container_name"]
+    subprocess.run(["docker", "stop", container], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return {"status": "stopped"}
 
 @check_service_name
 def start_service(service_name: str):
-    pass
+    container = SERVICES[service_name]["container_name"]
+    image = SERVICES[service_name]["image"]
+    memory_limit = SERVICES[service_name].get("memory_limit")
+    volumes = SERVICES[service_name].get("volumes", [])
+    ports = SERVICES[service_name].get("ports", [])
+
+    try:
+        subprocess.run(["docker", "start", container], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except subprocess.CalledProcessError:
+        cmd = [
+            "docker", "run", "-d",
+            "--memory", memory_limit,
+            "--name", container,
+        ]
+        for v in volumes:
+            cmd += ["-v", v]
+        for p in ports:
+            cmd += ["-p", p]
+        cmd.append(image)
+        subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return {"status": "started"}
 
 @check_service_name
 def service_help(service_name: str):
-    pass
+    return {"help": SERVICES[service_name]["description"]}

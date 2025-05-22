@@ -2,30 +2,30 @@ from .exceptions import ServiceNotFoundError
 import docker
 
 SERVICES = {
-    "email": {
-        "name": "Email Service",
-        "description": "Handles email notifications and communications.",
-        "status": "running",
-        "restartable": True,
-        "stoppable": True,
-        "startable": True,
-    },
-    "vpn": {
-        "name": "VPN Service",
-        "description": "Provides secure VPN connections.",
-        "status": "stopped",
-        "restartable": True,
-        "stoppable": True,
-        "startable": True,
-    },
-    "llm": {
-        "name": "LLM Service",
-        "description": "Handles large language model processing.",
-        "status": "running",
-        "restartable": True,
-        "stoppable": True,
-        "startable": True,
-    },
+    # "email": {
+    #     "name": "Email Service",
+    #     "description": "Handles email notifications and communications.",
+    #     "status": "running",
+    #     "restartable": True,
+    #     "stoppable": True,
+    #     "startable": True,
+    # },
+    # "vpn": {
+    #     "name": "VPN Service",
+    #     "description": "Provides secure VPN connections.",
+    #     "status": "stopped",
+    #     "restartable": True,
+    #     "stoppable": True,
+    #     "startable": True,
+    # },
+    # "llm": {
+    #     "name": "LLM Service",
+    #     "description": "Handles large language model processing.",
+    #     "status": "running",
+    #     "restartable": True,
+    #     "stoppable": True,
+    #     "startable": True,
+    # },
 }
 
 def list_services():

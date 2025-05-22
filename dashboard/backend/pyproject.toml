@@ -5,10 +5,14 @@ description = "Hackaburg25 box-project dashboard backend"
 authors = [{ name = "lstuma", email = "lstuma@pwned.place" }]
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = ["fastapi", "uvicorn (>=0.34.2,<0.35.0)", "docker (>=7.1.0,<8.0.0)"]
+dependencies = [
+    "fastapi",
+    "uvicorn (>=0.34.2,<0.35.0)",
+    "docker (>=7.1.0,<8.0.0)",
+]
 
 [tool.poetry]
-packages = [{ include = "backend", from = "src" }]
+packages = [{ include = "src", from = "." }]
 
 
 [build-system]
@@ -16,4 +20,4 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-backend = "backend.app:run"
+backend = "app:run"

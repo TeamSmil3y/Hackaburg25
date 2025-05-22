@@ -1,10 +1,20 @@
 from argparse import ArgumentParser
 import uvicorn
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from src.services import list_services, service_status, restart_service, stop_service, start_service, service_help, ServiceNotFoundError
 import logging
 
 app = FastAPI()
+
+# Allow all origins (for development only)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/services/list")
 async def route_list_services():

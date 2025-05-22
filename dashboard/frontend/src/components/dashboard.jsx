@@ -35,7 +35,7 @@ function Dashboard() {
                 service_name={service_name}
                 service_logo={service_logo}
                 service_status={service_status}
-                key={slug}
+                slug={slug}
               />
             );
           })

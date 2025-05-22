@@ -1,4 +1,55 @@
 .service-card {
-    width: 10rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 17rem;
     height: 10rem;
+    border-radius: 0.1rem;
+    border: 1px solid white;
+    background-color: #232323;
+    padding: 1rem;
+}
+
+.service-button {
+    border-radius: 100rem;
+    outline: none;
+    border: none;
+    margin: 0.3rem;
+    background-color: beige;
+    padding: 0.3rem 0.4rem;
+    transition: 0.2s;
+}
+
+.power-icon {
+    transform: translateY(0.1rem);
+}
+
+.help-icon {
+    transform: translateY(0.4rem);
+}
+
+.service-logo {
+    height: 100%;
+    width: auto;
+    background-color: #00ff0010;
+}
+
+.service-button.stopped {
+    background-color: indianred;
+}
+.service-button.running {
+    background-color: greenyellow;
+}
+.service-button:hover {
+    scale: 1.05;
+}
+.service-button:active {
+    scale: 0.95;
+}
+
+.service-button.help {
+    color: black;
+    text-decoration: none;
+}
+.service-button.help:hover {
+    color: black;
 }

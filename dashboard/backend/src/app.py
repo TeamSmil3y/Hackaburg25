@@ -12,6 +12,7 @@ origins = [
     "http://localhost:3000",
     "http://localhost:8080",
 ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -19,7 +20,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 @app.get("/services/list")
 async def route_list_services():

@@ -1,0 +1,33 @@
+.sidebar {
+    position: fixed;
+    left: 0;
+    height: 100%;
+    width: 20rem;
+    border-right: 2px solid white;
+    background-color: #202020;
+}
+
+.sidebar > h2 {
+}
+
+.sidebar-pages {
+    border-top: 1px solid white;
+    display: grid;
+}
+
+.sidebar-link {
+    color: white;
+    text-align: left;
+    width: calc(100% - 2rem);
+    padding: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+.sidebar-link.active {
+    background-color: white;
+    color: black;
+}
+
+.content {
+    margin-left: 20rem;
+}

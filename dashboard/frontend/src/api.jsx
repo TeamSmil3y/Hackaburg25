@@ -1,5 +1,7 @@
 const API_BASE = "http://localhost:8080";
 
+class Service {}
+
 async function request(path) {
   return (await fetch(API_BASE + path)).text();
 }

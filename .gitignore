@@ -84,3 +84,6 @@ venv.bak/
 
 # Logs
 *.log
+
+# docker mount dir
+dashboard/backend/data

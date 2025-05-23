@@ -3,11 +3,12 @@ import { toast } from "react-toastify";
 const API_BASE = "http://localhost:8080";
 
 class Service {
-  constructor(name, status, description, port) {
+  constructor(name, status, description, port, help) {
     this.name = name;
     this.status = status;
     this.description = description;
     this.port = port;
+    this.help = help;
   }
 }
 
@@ -18,7 +19,13 @@ async function request(path) {
 async function list_services() {
   const data = JSON.parse(await request("/services/list"));
   const services = Object.entries(data).map(([name, data]) => {
-    return new Service(name, data["status"], data["description"], data["port"]);
+    return new Service(
+      name,
+      data["status"],
+      data["description"],
+      data["port"],
+      data["help"],
+    );
   });
   return services;
 }

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { IoHelpCircleOutline } from "react-icons/io5";
 import { FaPowerOff, FaLink } from "react-icons/fa6";
 import { RiSettings2Fill } from "react-icons/ri";
+import { FaGooglePlay } from "react-icons/fa";
+import { FaAppStoreIos } from "react-icons/fa";
 import { Popup } from "reactjs-popup";
 
 function ServiceCard({ service, service_logo }) {
@@ -51,10 +53,41 @@ function ServiceCard({ service, service_logo }) {
           <FaLink size={"1.5rem"} />
         </a>
         <br style={{ marginBottom: "2rem" }} />
-        <Link to={"/help/" + service.name} className="service-button help">
-          Help
-          <IoHelpCircleOutline className="help-icon" size={"1.5rem"} />
-        </Link>
+        <Popup
+          modal
+          nested
+          trigger={
+            <span to={"/help/" + service.name} className="service-button help">
+              Help
+              <IoHelpCircleOutline className="help-icon" size={"1.5rem"} />
+            </span>
+          }
+        >
+          {(close) => (
+            <div className="modal-popup">
+              <h2>{service.name}</h2>
+              <p>{service.help.description}</p>
+              <h4>Instructions</h4>
+              <ol>
+                {service.help.instructions.map((instruction, index) => {
+                  return (
+                    <li key={index}>
+                      <p>{instruction}</p>
+                    </li>
+                  );
+                })}
+              </ol>
+              <div className="downloads">
+                <Link to={service.help.link.google} className="google-play">
+                  <FaGooglePlay size={"2rem"} />
+                </Link>
+                <Link to={service.help.link.apple} className="app-store">
+                  <FaAppStoreIos size={"2rem"} />
+                </Link>
+              </div>
+            </div>
+          )}
+        </Popup>
       </div>
     </div>
   );

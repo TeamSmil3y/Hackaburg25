@@ -94,3 +94,31 @@
 .service-button.help:hover {
     color: black;
 }
+
+.categories {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+}
+
+.categories *:nth-child(1) {
+    font-weight: bold;
+}
+
+.downloads {
+    position: relative;
+    display: flex;
+    align-self: center;
+    width: min-content;
+    gap: 1rem;
+    left: 50%;
+    transform: translate(-50%, -0.3rem);
+}
+
+.app-store,
+.google-play {
+    height: auto;
+    color: black;
+    outline: none;
+    border: none;
+}

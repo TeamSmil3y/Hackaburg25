@@ -140,6 +140,7 @@ def start_service(service_name: str):
             cmd += ["-p", p]
         cmd.append(image)
         subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        print(cmd, subprocess.DEVNULL, subprocess.DEVNULL)
     return {"status": "started"}
 
 @check_service_name

@@ -16,6 +16,9 @@ function Dashboard() {
   useEffect(() => {
     async function fetchServices() {
       setServices(await list_services());
+      setTimeout(() => {
+        fetchServices();
+      }, 1000);
     }
     fetchServices();
   }, []);
@@ -26,17 +29,11 @@ function Dashboard() {
         {services === null ? (
           <div className="loading"></div>
         ) : (
-          Object.entries(services).map(([slug, service]) => {
-            const service_name = service["name"];
-            const service_logo = service["logo_url"];
-            const service_status = service["status"];
+          services.map((service) => {
+            const service_logo_url =
+              process.env.PUBLIC_URL + "/service-img/" + service.name + ".jpg";
             return (
-              <ServiceCard
-                service_name={service_name}
-                service_logo={service_logo}
-                service_status={service_status}
-                slug={slug}
-              />
+              <ServiceCard service={service} service_logo={service_logo_url} />
             );
           })
         )}

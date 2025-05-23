@@ -24,15 +24,18 @@ jobs:
 
       - name: Build React app
         working-directory: dashboard/frontend
-        run: npm run build
+        run: CI='' npm run build
 
       - name: Start Tailscale
         uses: tailscale/github-action@v3
         with:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          tags: tag:ci
 
-      - name: Copy build folder to Raspberry Pi
+      - name: Remove old build directory from Raspberry Pi
         run: |
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no" dashboard/frontend/build/ root@raspberrypi:/opt/Hackaburg25/dashboard/frontend/build/
+          ssh -o StrictHostKeyChecking=no root@raspberrypi "rm -rf /opt/Hackaburg25/dashboard/frontend/build/"
+
+      - name: Copy new build folder to Raspberry Pi
+        run: |
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no" dashboard/frontend/build/ root@raspberrypi:/opt/Hackaburg25/dashboard/frontend/frontend/build/

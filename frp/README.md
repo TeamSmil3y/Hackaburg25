@@ -52,6 +52,12 @@ local_ip = 127.0.0.1
 local_port = 80
 custom_domains = dash.smiley.hb.teamsmiley.org
 
+[backend]
+type = http
+local_ip = 127.0.0.1
+local_port = 8080
+custom_domains = backend.smiley.hb.teamsmiley.org
+
 [nextcloud]
 type = http
 local_ip = 127.0.0.1

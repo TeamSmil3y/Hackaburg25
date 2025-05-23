@@ -60,4 +60,5 @@ export {
   stop_service,
   restart_service,
   get_service_help,
+  API_BASE,
 };

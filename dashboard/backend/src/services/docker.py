@@ -31,7 +31,7 @@ def list_services():
             status = output.decode().strip()
         except subprocess.CalledProcessError:
             status = "not found"
-        results[key] = {"status": status, "description": meta["description"]}
+        results[key] = {"status": status, "description": meta["description"], "port": meta["ports"][0].split(":")[0]}
     return results
 
 def check_service_name(func):

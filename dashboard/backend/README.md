@@ -60,3 +60,14 @@
 ## tailscale oatuh client
 - client id: kTFg6gjfRC21CNTRL
 - client secret: tskey-client-kTFg6gjfRC21CNTRL-dUjJpNkSFLNpvGh6fgk2MNrVMs1uJQYsE
+
+## Development
+- Create virtual environment  
+  ```bash
+  python3 -m venv .venv
+  source .venv/bin/activate
+
+- Setup dependencies
+  ```bash
+  pip freeze > requirements.txt
+  pip install -r requirements.txt

@@ -7,7 +7,8 @@ SERVICES = {
         "image": "nextcloud",
         "description": "Self-hosted cloud storage and collaboration platform.",
         "memory_limit": "1024m",  # 1GB
-        "volumes": ["/home/jasforum/Developer/hackathons/Hackaburg25/dashboard/backend/data/nextcloud:/var/www/html/data"],
+        "volumes": ["/opt/nextcloud/data:/var/www/html/data"],
+        # "volumes": ["/home/jasforum/Developer/hackathons/Hackaburg25/dashboard/backend/data/nextcloud:/var/www/html/data"],
         "ports": ["8010:80"]
     },
     "immich": {
@@ -15,7 +16,8 @@ SERVICES = {
         "image": "altran1502/immich-server:v1.89.0",
         "description": "Self-hosted Google Photos alternative with AI features.",
         "memory_limit": "2048m",  # 2GB
-        "volumes": ["/home/jasforum/Developer/hackathons/Hackaburg25/dashboard/backend/data/immich:/app/data"],
+        "volumes": ["/opt/immich/data:/app/data"],
+        # "volumes": ["/home/jasforum/Developer/hackathons/Hackaburg25/dashboard/backend/data/immich:/app/data"],
         "ports": ["8020:2283"]
     },
 }

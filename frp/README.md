@@ -16,7 +16,7 @@ bind_port = 7000
 dashboard_port = 7500
 dashboard_user = admin
 dashboard_pwd = teamsmiley
-vhost_http_port = 8080
+vhost_http_port = 80
 
 ### data dir
 - mkdir -p /frp-server/data
@@ -28,7 +28,7 @@ docker run -d \
   -v /frp-server/data:/frp/data \
   -p 7000:7000 \
   -p 7500:7500 \
-  -p 8080:8080 \
+  -p 80:80 \
   snowdreamtech/frps \
   -c /frp/frps.ini
 
@@ -39,6 +39,12 @@ docker run -d \
 [common]
 server_addr = hb.teamsmiley.org
 server_port = 7000
+
+[ssh]
+type = tcp
+local_ip = 127.0.0.1
+local_port = 22
+remote_port = 6000
 
 [dash]
 type = http

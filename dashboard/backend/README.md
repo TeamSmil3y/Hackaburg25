@@ -56,3 +56,7 @@
 - username: teamsmiley
 - password: teamsmiley
 - public-ip: 100.124.251.22
+
+## tailscale oatuh client
+- client id: kTFg6gjfRC21CNTRL
+- client secret: tskey-client-kTFg6gjfRC21CNTRL-dUjJpNkSFLNpvGh6fgk2MNrVMs1uJQYsE

@@ -41,3 +41,23 @@ html {
         transform: rotate(360deg);
     }
 }
+
+.modal-popup {
+    position: relative;
+    min-width: 20rem;
+    min-height: 20rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    z-index: 2;
+    padding: 0.5rem 2rem;
+    display: grid;
+}
+
+.popup-overlay {
+    background-color: #00000020;
+}
+
+.modal-popup *:is(h1, h2, h3, h4, h5, h6) {
+    text-align: center;
+    text-transform: capitalize;
+}

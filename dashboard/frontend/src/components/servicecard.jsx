@@ -9,7 +9,6 @@ import { FaAppStoreIos } from "react-icons/fa";
 import { Popup } from "reactjs-popup";
 
 function ServiceCard({ service, service_logo }) {
-  const url = API_BASE + ":" + service.port;
   return (
     <div
       className={"service-card " + "service-" + service.status}
@@ -44,7 +43,7 @@ function ServiceCard({ service, service_logo }) {
             <span className="status-msg">{service.status}</span>
           </button>
         )}
-        <a href={url} className="service-link">
+        <a href={service.url} className="service-link">
           <FaLink size={"1.5rem"} />
         </a>
         <br style={{ marginBottom: "2rem" }} />

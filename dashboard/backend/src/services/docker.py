@@ -4,6 +4,7 @@ import subprocess
 SERVICES = {
     "nextcloud": {
         "container_name": "nextcloud",
+        "url": "http://cloud.smiley.hb.teamsmiley.org",
         "image": "nextcloud",
         "description": "Self-hosted cloud storage and collaboration platform.",
         "memory_limit": "1024m",  # 1GB
@@ -44,6 +45,7 @@ SERVICES = {
         "description": "Self-hosted Google Photos alternative with AI features.",
         "memory_limit": "2048m",  # 2GB
         "volumes": ["/opt/immich/data:/app/data"],
+        "url": "http://photos.smiley.hb.teamsmiley.org",
         # "volumes": ["/home/jasforum/Developer/hackathons/Hackaburg25/dashboard/backend/data/immich:/app/data"],
         "ports": ["8020:2283"],
         "help": {
@@ -85,7 +87,7 @@ def list_services():
             status = output.decode().strip()
         except subprocess.CalledProcessError:
             status = "not found"
-        results[key] = {"status": status, "description": meta["description"], "port": meta["ports"][0].split(":")[0], "help": meta["help"]}
+        results[key] = {"status": status, "description": meta["description"], "url": meta["url"], "help": meta["help"]}
     return results
 
 def check_service_name(func):

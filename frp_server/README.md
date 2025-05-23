@@ -6,3 +6,26 @@
 - baseos: ubuntu
 - applictions: docker
 - container: frp
+
+
+### config
+- mkdir -p /frp-server/conf
+- vim /frp-server/conf/frps.ini
+[common]
+bind_port = 7000
+dashboard_port = 7500
+dashboard_user = admin
+dashboard_pwd = teamsmiley
+
+## data dir
+- mkdir -p /frp-server/data
+
+### start frps container
+docker run -d \
+  --name frp-server \
+  -v /frp-server/conf/frps.ini:/frp/frps.ini \
+  -v /frp-server/data:/frp/data \
+  -p 7000:7000 \
+  -p 7500:7500 \
+  snowdreamtech/frps \
+  -c /frp/frps.ini

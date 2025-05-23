@@ -10,11 +10,32 @@
 
 ## Examples
 - curl http://localhost:8080/services/list
+  ```json
+  {
+    "nextcloud": {
+      "status": "running",
+      "description": "Self-hosted cloud storage and collaboration platform."
+    },
+    "immich": {
+      "status": "not found",
+      "description": "Self-hosted Google Photos alternative with AI features."
+    }
+  }
 - curl http://localhost:8080/services/nextcloud/status
+  ```json
+  {
+    "status": "running"
+  }
 - curl http://localhost:8080/services/nextcloud/restart
+  ```json
+  {
+    "status": "restarted"
+  }
 - curl http://localhost:8080/services/nextcloud/start
-- curl http://localhost:8080/services/nextcloud/help
-- 
+  ```json
+  {
+    "help": "Self-hosted cloud storage and collaboration platform."
+  }
 
 - curl http://localhost:8080/services/immich/status
 - curl http://localhost:8080/services/immich/stop
@@ -28,3 +49,10 @@
   -v /home/jasforum/Developer/hackathons/Hackaburg25/dashboard/backend/data/immich:/app/data \
   -p 8020:2283 \
   altran1502/immich-server:v1.89.0/immich-server:latest
+
+
+## raspi config
+- hostname: raspberrypi.local
+- username: teamsmiley
+- password: teamsmiley
+- public-ip: 100.124.251.22

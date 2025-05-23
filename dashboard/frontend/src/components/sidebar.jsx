@@ -20,7 +20,7 @@ function Sidebar() {
   return (
     <>
       <div className="topbar">
-        <h2 className="brand">Box</h2>
+        <h2 className="brand">EigenBox</h2>
         <div className="meta">
           <span className="version">Version 0.1.5</span>
           <span className="update-icon">

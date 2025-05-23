@@ -116,6 +116,7 @@ def restart_service(service_name: str):
 def stop_service(service_name: str):
     container = SERVICES[service_name]["container_name"]
     subprocess.run(["docker", "stop", container], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(["docker", "container", "prune", "-f"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return {"status": "stopped"}
 
 @check_service_name

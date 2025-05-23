@@ -22,6 +22,20 @@ SERVICES = {
                 "Log in with your Nextcloud credentials.",
                 "Start using Nextcloud to store and share files securely."
             ]
+        },
+        "config": {
+            "port": {
+                "type": "port",
+                "from": 1024,
+                "to": 65535,
+                "value": 8010,
+            },
+            "memory limit (MiB)": {
+                "type": "slider",
+                "from": 512,
+                "to": 4096,
+                "value": 1024
+            },
         }
     },
     "immich": {
@@ -44,6 +58,20 @@ SERVICES = {
                 "Log in with your Immich credentials.",
                 "Start backing up your photos and videos securely."
             ]
+        },
+        "config": {
+            "port": {
+                "type": "port",
+                "from": 1024,
+                "to": 65535,
+                "value": 8020,
+            },
+            "memory limit (MiB)": {
+                "type": "slider",
+                "from": 512,
+                "to": 4096,
+                "value": 2048
+            },
         }
     },
 }

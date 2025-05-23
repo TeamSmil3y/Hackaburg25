@@ -1,13 +1,26 @@
+import { toast } from "react-toastify";
+
 const API_BASE = "http://localhost:8080";
 
-class Service {}
+class Service {
+  constructor(name, status, description, port) {
+    this.name = name;
+    this.status = status;
+    this.description = description;
+    this.port = port;
+  }
+}
 
 async function request(path) {
   return (await fetch(API_BASE + path)).text();
 }
 
 async function list_services() {
-  return JSON.parse(await request("/services/list"));
+  const data = JSON.parse(await request("/services/list"));
+  const services = Object.entries(data).map(([name, data]) => {
+    return new Service(name, data["status"], data["description"], data["port"]);
+  });
+  return services;
 }
 
 async function get_service_status(service_name) {
@@ -15,14 +28,17 @@ async function get_service_status(service_name) {
 }
 
 async function start_service(service_name) {
+  toast(`Starting ${service_name}`, { hideProgressBar: true });
   return JSON.parse(await request(`/services/${service_name}/start`));
 }
 
 async function stop_service(service_name) {
+  toast(`Stopping ${service_name}`, { hideProgressBar: true });
   return JSON.parse(await request(`/services/${service_name}/stop`));
 }
 
 async function restart_service(service_name) {
+  toast(`Restarting ${service_name}`, { hideProgressBar: true });
   return JSON.parse(await request(`/services/${service_name}/restart`));
 }
 

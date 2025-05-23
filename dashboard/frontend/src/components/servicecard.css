@@ -1,12 +1,38 @@
 .service-card {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 17rem;
-    height: 10rem;
-    border-radius: 0.1rem;
-    border: 1px solid white;
-    background-color: #232323;
-    padding: 1rem;
+    grid-template-columns: 10rem auto;
+    width: 25rem;
+    height: 11rem;
+    border-radius: 0.5rem;
+    --shadow: #e0e0e0;
+    box-shadow: 0 0 1rem var(--shadow);
+    padding: 0.5rem;
+    transition: 0.5s;
+}
+
+.service-controls {
+    cursor: pointer;
+}
+
+.service-controls > svg {
+    transform: translate(-0.1rem, 0.2rem);
+}
+
+.service-controls:hover > svg {
+}
+
+.service-running {
+    box-shadow: 0 0 1rem color-mix(in srgb, #eaeaea, palegreen 10%);
+    background-color: color-mix(in srgb, white, palegreen 10%);
+}
+.service-exited {
+    box-shadow: 0 0 1rem color-mix(in srgb, #eaeaea, palevioletred 10%);
+    background-color: color-mix(in srgb, white, palevioletred 10%);
+}
+
+.service-card h2 {
+    transform: translateX(1rem);
+    text-transform: capitalize;
 }
 
 .service-button {
@@ -14,7 +40,6 @@
     outline: none;
     border: none;
     margin: 0.3rem;
-    background-color: beige;
     padding: 0.3rem 0.4rem;
     transition: 0.2s;
 }
@@ -31,13 +56,28 @@
     height: 100%;
     width: auto;
     background-color: #00ff0010;
+    border-radius: 0.3rem;
+}
+
+.service-controls {
+    margin: 0.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.service-link {
+    margin-left: 0.2rem;
+    color: black;
+}
+.service-link > svg {
+    transform: translateY(0.4rem);
 }
 
 .service-button.stopped {
-    background-color: indianred;
+    background-color: palevioletred;
 }
 .service-button.running {
-    background-color: greenyellow;
+    background-color: palegreen;
 }
 .service-button:hover {
     scale: 1.05;
@@ -49,6 +89,7 @@
 .service-button.help {
     color: black;
     text-decoration: none;
+    background-color: transparent;
 }
 .service-button.help:hover {
     color: black;

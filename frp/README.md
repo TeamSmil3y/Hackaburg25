@@ -40,12 +40,6 @@ docker run -d \
 server_addr = hb.teamsmiley.org
 server_port = 7000
 
-[ssh]
-type = tcp
-local_ip = 127.0.0.1
-local_port = 22
-remote_port = 6000
-
 [dash]
 type = http
 local_ip = 127.0.0.1

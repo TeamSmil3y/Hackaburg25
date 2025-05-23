@@ -9,7 +9,20 @@ SERVICES = {
         "memory_limit": "1024m",  # 1GB
         "volumes": ["/opt/nextcloud/data:/var/www/html/data"],
         # "volumes": ["/home/jasforum/Developer/hackathons/Hackaburg25/dashboard/backend/data/nextcloud:/var/www/html/data"],
-        "ports": ["8010:80"]
+        "ports": ["8010:80"],
+        "help": {
+            "description": "Nextcloud is a self-hosted productivity platform that keeps you in control.",
+            "link": {
+                "apple": "https://apps.apple.com/us/app/nextcloud/id1125420102",
+                "google": "https://play.google.com/store/apps/details?id=com.nextcloud.client&pcampaignid=web_share",
+            },
+            "instructions": [
+                "Download the Nextcloud app from the App Store or Google Play.",
+                "Open the app and enter your server URL (e.g., http://your-server-ip:8010).",
+                "Log in with your Nextcloud credentials.",
+                "Start using Nextcloud to store and share files securely."
+            ]
+        }
     },
     "immich": {
         "container_name": "immich_server",
@@ -18,7 +31,20 @@ SERVICES = {
         "memory_limit": "2048m",  # 2GB
         "volumes": ["/opt/immich/data:/app/data"],
         # "volumes": ["/home/jasforum/Developer/hackathons/Hackaburg25/dashboard/backend/data/immich:/app/data"],
-        "ports": ["8020:2283"]
+        "ports": ["8020:2283"],
+        "help": {
+            "description": "Immich is a self-hosted photo and video backup solution with AI features.",
+            "link": {
+                "apple": "https://apps.apple.com/us/app/immich/id1613945652",
+                "google": "https://play.google.com/store/apps/details?id=app.alextran.immich&pcampaignid=web_share",
+            },
+            "instructions": [
+                "Download the Immich app from the App Store or Google Play.",
+                "Open the app and enter your server URL (e.g., http://your-server-ip:8020).",
+                "Log in with your Immich credentials.",
+                "Start backing up your photos and videos securely."
+            ]
+        }
     },
 }
 
@@ -31,7 +57,7 @@ def list_services():
             status = output.decode().strip()
         except subprocess.CalledProcessError:
             status = "not found"
-        results[key] = {"status": status, "description": meta["description"], "port": meta["ports"][0].split(":")[0]}
+        results[key] = {"status": status, "description": meta["description"], "port": meta["ports"][0].split(":")[0], "help": meta["help"]}
     return results
 
 def check_service_name(func):
@@ -88,4 +114,4 @@ def start_service(service_name: str):
 
 @check_service_name
 def service_help(service_name: str):
-    return {"help": SERVICES[service_name]["description"]}
+    return {"help": SERVICES[service_name]["help"]}

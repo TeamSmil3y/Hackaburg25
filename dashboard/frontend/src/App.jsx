@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <Router>
         <Sidebar />
-        <ToastContainer theme="dark" />
+        <ToastContainer theme="light" />
         <div className="content">
           <Routes>
             <Route path="/" element={<Dashboard />} />

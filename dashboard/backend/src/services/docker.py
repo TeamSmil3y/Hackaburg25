@@ -93,7 +93,7 @@ def start_service(service_name: str):
                 subprocess.run([
                     "docker", "run", "-d",
                     "--name", "nextcloud",
-                    "--memory", "1024m",
+                    "--memory", "2048m",
                     "-p", "8010:80",
                     "-v", "/opt/nextcloud/data:/var/www/html/data",
                     "nextcloud"

@@ -17,6 +17,7 @@ dashboard_port = 7500
 dashboard_user = admin
 dashboard_pwd = teamsmiley
 vhost_http_port = 80
+vhost_https_port = 443
 
 ### data dir
 - mkdir -p /frp-server/data
@@ -29,6 +30,7 @@ docker run -d \
   -p 7000:7000 \
   -p 7500:7500 \
   -p 80:80 \
+  -p 443:443 \
   snowdreamtech/frps \
   -c /frp/frps.ini
 
@@ -45,24 +47,35 @@ type = http
 local_ip = 127.0.0.1
 local_port = 80
 custom_domains = dash.smiley.hb.teamsmiley.org
+use_https = true
+
+[local-dash]
+type = http
+local_ip = 127.0.0.1
+local_port = 3000
+custom_domains = local.dash.smiley.hb.teamsmiley.org
+use_https = true
 
 [backend]
 type = http
 local_ip = 127.0.0.1
 local_port = 8080
 custom_domains = backend.smiley.hb.teamsmiley.org
+use_https = true
 
 [nextcloud]
 type = http
 local_ip = 127.0.0.1
 local_port = 8010
 custom_domains = cloud.smiley.hb.teamsmiley.org
+use_https = true
 
-[immich]
+[photos]
 type = http
 local_ip = 127.0.0.1
 local_port = 8020
 custom_domains = photos.smiley.hb.teamsmiley.org
+use_https = true
 
 ### start frps client container
 docker run -d \

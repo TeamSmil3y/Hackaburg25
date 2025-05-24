@@ -3,11 +3,11 @@ import { toast } from "react-toastify";
 const API_BASE = "http://backend.smiley.hb.teamsmiley.org";
 
 class Service {
-  constructor(name, status, description, port, help) {
+  constructor(name, status, description, url, help) {
     this.name = name;
     this.status = status;
     this.description = description;
-    this.port = port;
+    this.url = url;
     this.help = help;
   }
 }
@@ -23,7 +23,7 @@ async function list_services() {
       name,
       data["status"],
       data["description"],
-      data["port"],
+      data["url"],
       data["help"],
     );
   });
@@ -60,4 +60,5 @@ export {
   stop_service,
   restart_service,
   get_service_help,
+  API_BASE,
 };

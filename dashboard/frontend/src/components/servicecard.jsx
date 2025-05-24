@@ -1,5 +1,5 @@
 import "./servicecard.css";
-import { start_service, stop_service, restart_service } from "../api";
+import { start_service, stop_service, restart_service, API_BASE } from "../api";
 import { Link } from "react-router-dom";
 import { IoHelpCircleOutline } from "react-icons/io5";
 import { FaPowerOff, FaLink } from "react-icons/fa6";
@@ -9,12 +9,6 @@ import { FaAppStoreIos } from "react-icons/fa";
 import { Popup } from "reactjs-popup";
 
 function ServiceCard({ service, service_logo }) {
-  const url =
-    window.location.protocol +
-    "//" +
-    window.location.hostname +
-    ":" +
-    service.port;
   return (
     <div
       className={"service-card " + "service-" + service.status}
@@ -49,7 +43,7 @@ function ServiceCard({ service, service_logo }) {
             <span className="status-msg">{service.status}</span>
           </button>
         )}
-        <a href={url} className="service-link">
+        <a href={service.url} className="service-link">
           <FaLink size={"1.5rem"} />
         </a>
         <br style={{ marginBottom: "2rem" }} />

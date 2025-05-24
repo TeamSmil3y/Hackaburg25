@@ -19,9 +19,11 @@ Our Solution, a device called the EigenBox, is essentially a small homeserver th
 ## How we built it
 For our proof-of-concept we used a raspberry pi. (In production different options of small to medium sized computers may be used instead thus allowing for better adaption to customer needs.)
 The EigenBox currently features a web service (frontend: React, backend: FastAPI Python) providing a dashboard to manage services (currently this is achieved using Docker containers). In order to offer remote access to services on the box (e.g. VPN) the EigenBox automatically connects to our own reverse proxy server (currently hosted using cloud VMs) - therefore no port forwarding is required. 
+For a even more secure connection we also implemented a Mesh Network Controller which allows clients establish a peer-to-peer connection to the EigenBox from anywhere, thus enabling a Virtual Private Network.
 
 ## Challenges we ran into
 - port forwarding
+- networking protocols
 - running out of space  on the raspberry pi
 
 ## Accomplishments that we're proud of

@@ -2,7 +2,7 @@
 
 ### For now following configuration is setup
 
-- vm: google cloud instance (34.41.148.109)
+- vm: cloud instance (34.41.148.109)
 - baseos: ubuntu
 - applictions: docker
 - container: frp
